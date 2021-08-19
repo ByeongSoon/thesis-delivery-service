@@ -4,6 +4,14 @@ server:
 spring:
   application:
     name: delivery-service
+  datasource:
+    username: root
+    password: 1234
+    url: jdbc:mysql://localhost:3308/delivery?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
+  jpa:
+    show-sql: false
+  jackson:
+    property-naming-strategy: SNAKE_CASE
 
 eureka:
   instance:
