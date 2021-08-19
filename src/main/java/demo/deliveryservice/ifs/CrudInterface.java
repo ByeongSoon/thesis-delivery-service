@@ -13,7 +13,7 @@ public interface CrudInterface<Res,Req> {
 
     Header<Res> update(Header<Req> request);
 
-    Header<Res> delete(Long id);
+    Header delete(Long id);
 
     Header<List<Res>> search(Pageable pageable);
 

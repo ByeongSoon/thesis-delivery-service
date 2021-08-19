@@ -21,14 +21,14 @@ public class Header<T> {
 
     private Pagination pagination;
 
-    public Header<T> OK() {
+    public static <T> Header<T> OK() {
         return (Header<T>) Header.builder()
                 .transactionTime(LocalDateTime.now())
                 .description("OK")
                 .build();
     }
 
-    public Header<T> OK(T data) {
+    public static <T> Header<T> OK(T data) {
         return (Header<T>) Header.builder()
                 .transactionTime(LocalDateTime.now())
                 .description("OK")
@@ -36,7 +36,7 @@ public class Header<T> {
                 .build();
     }
 
-    public Header<T> OK(T data, Pagination pagination) {
+    public static <T> Header<T> OK(T data, Pagination pagination) {
         return (Header<T>) Header.builder()
                 .transactionTime(LocalDateTime.now())
                 .description("OK")
@@ -45,8 +45,8 @@ public class Header<T> {
                 .build();
     }
 
-    public Header ERROR(String description) {
-        return Header.builder()
+    public static<T> Header<T> ERROR(String description) {
+        return (Header<T>) Header.builder()
                 .transactionTime(LocalDateTime.now())
                 .description(description)
                 .build();

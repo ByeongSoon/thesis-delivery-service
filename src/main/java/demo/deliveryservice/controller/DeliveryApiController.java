@@ -39,11 +39,13 @@ public class DeliveryApiController implements CrudInterface<DeliveryApiResponse,
     }
 
     @Override
-    public Header<DeliveryApiResponse> delete(@PathVariable Long id) {
+    @DeleteMapping("{id}")
+    public Header delete(@PathVariable Long id) {
         return deliveryApiLogicService.delete(id);
     }
 
     @Override
+    @GetMapping("")
     public Header<List<DeliveryApiResponse>> search(@PageableDefault(sort = "id", direction = Sort.Direction.ASC, size = 10) Pageable pageable) {
         return deliveryApiLogicService.search(pageable);
     }
