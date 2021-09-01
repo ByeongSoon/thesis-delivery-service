@@ -38,6 +38,19 @@ public class DeliveryApiLogicService implements CrudInterface<DeliveryApiRespons
         return Header.OK(response(deliveryRepository.save(delivery)));
     }
 
+    @Transactional
+    public Long createByOrder(DeliveryApiRequest request) {
+
+        Delivery delivery = Delivery.builder()
+                .status(request.getStatus())
+                .revAddress(request.getRevAddress())
+                .revName(request.getRevName())
+                .arrivalDate(LocalDateTime.now().plusDays(2))
+                .build();
+
+        return deliveryRepository.save(delivery).getId();
+    }
+
     @Override
     @Transactional
     public Header<DeliveryApiResponse> read(Long id) {

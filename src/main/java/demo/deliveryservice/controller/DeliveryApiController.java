@@ -26,6 +26,11 @@ public class DeliveryApiController implements CrudInterface<DeliveryApiResponse,
         return deliveryApiLogicService.create(request);
     }
 
+    @PostMapping("/byOrder")
+    public Long createByOrder(@RequestBody DeliveryApiRequest request) {
+        return deliveryApiLogicService.createByOrder(request);
+    }
+
     @Override
     @GetMapping("{id}")
     public Header<DeliveryApiResponse> read(@PathVariable Long id) {
