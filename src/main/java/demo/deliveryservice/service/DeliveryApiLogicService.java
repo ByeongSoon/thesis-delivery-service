@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -49,6 +50,22 @@ public class DeliveryApiLogicService implements CrudInterface<DeliveryApiRespons
                 .build();
 
         return deliveryRepository.save(delivery).getId();
+    }
+
+    @Transactional
+    public Mono<Long> createByOrderRSocket(DeliveryApiRequest request) {
+        Delivery delivery = Delivery.builder()
+            .status(request.getStatus())
+            .revAddress(request.getRevAddress())
+            .revName(request.getRevName())
+            .arrivalDate(LocalDateTime.now().plusDays(2))
+            .build();
+
+        Delivery newDelivery =  deliveryRepository.save(delivery);
+
+        return Mono.just(
+            newDelivery.getId()
+        );
     }
 
     @Override
